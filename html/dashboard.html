@@ -69,8 +69,23 @@
         }
       });
     }*/
-    
 
+    function sendSMS(){
+      var xhr = new XMLHttpRequest(); //This is all you would need for IE7+
+      var xhr_results = '';
+      if (xhr != null) {
+          console.log("hello1")
+          xhr.open("GET", "/dashboard/sendSMS", true);
+          xhr.onreadystatechange = function(){
+              if (xhr.readyState === 4) {
+                console.log("hello2")
+                xhr_results = xhr.responseText;
+              }
+          };
+          xhr.send();
+      } 
+    } 
+        
 
 
   </script>
