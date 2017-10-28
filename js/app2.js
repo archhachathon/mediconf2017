@@ -11,9 +11,9 @@ app.get('/dashboard', function(req, res) {
     res.sendFile(path.join(__dirname + '/../html/dashboard.html'));
 });
 
-/*app.get('/video', function(req, res) {
+app.get('/video', function(req, res) {
     res.sendFile(path.join(__dirname + '/../html/video.html'));
-});*/
+});
 
 app.listen(3000, function(){
 	console.info('Server listening on port ' + 3000);
