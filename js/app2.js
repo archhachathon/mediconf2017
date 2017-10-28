@@ -2,6 +2,12 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+var accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253'; // Your Account SID from www.twilio.com/console
+var authToken = '115e66de11ace97dfa3d083ff4980d34';   // Your Auth Token from www.twilio.com/console
+
+var twilio = require('twilio');
+var client = new twilio(accountSid, authToken);
+
 // viewed at http://localhost:3000
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../index.html'));
@@ -16,11 +22,7 @@ app.listen(3000, function(){
 	console.info('Server listening on port ' + 3000);
 });
 
-var accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253'; // Your Account SID from www.twilio.com/console
-var authToken = '115e66de11ace97dfa3d083ff4980d34';   // Your Auth Token from www.twilio.com/console
 
-var twilio = require('twilio');
-var client = new twilio(accountSid, authToken);
 
 
 app.get('/dashboard/sendSMS', function(req, res) {
