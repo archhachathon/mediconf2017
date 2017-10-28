@@ -5,15 +5,12 @@
   <title>Dashboard</title>
 
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- importing scripts -->
-  <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
  
   <script type="text/javascript">
     var vidyoConnector;
@@ -60,31 +57,39 @@
       })
     }
 
-      // Twilio Credentials
-      const accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253';
-      const authToken = '115e66de11ace97dfa3d083ff4980d34';
-
-      // require the Twilio module and create a REST client
-      const client = require('twilio')(accountSid, authToken);
-
-      //phone numbers
-      function sendSMS(){
-        client.messages
-        .create({
-          to: ['+13126102079'],
-          from: '+13142079612',
-          body: 'https://189e1465.ngrok.io',
-        })
-        .then((message) => console.log(message.sid));
-      }
-      $('#inviteBtn').click(function(){
-        alert("btn clicked");
-  
-        console.log('btn clicked');
-        sendSMS();
+    /*
+    function sendSMS(){
+      console.log("Hey mannnnnnnnnnn");
+      $.ajax({
+        console.log("hello")
+        type: 'GET',
+        url: "/dashboard/sendSMS",
+        success:function(data){
+          console.log('Succesfuly sent');
+        }
       });
+    }*/
+    
+
+
+
   </script>
+
+  <script type="text/javascript">
+      (function(){
+        $('#inviteBtn').click(function(){
+          console.log('btn clicked');
+          sendSMS();
+        });
+      })();
+    </script>
+
+
+
   <script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+  
+  <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
+  <script src="https://media.twiliocdn.com/sdk/js/chat/v1.2/twilio-chat.min.js"></script>
   <!-- importing scripts end -->
 
   <!-- embeded css -->
@@ -154,8 +159,8 @@
   </style>
 </head>
 
-<body>
 
+<body>
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">MediConf</a>
@@ -184,7 +189,8 @@
           <div class="container center">
             <!--<a href="/dashboard" class="btn">Get Started</a>-->
             <p><input id="displayName" type="text" placeholder="Display Name"></p>
-            <button class="btn" id="inviteBtn">Invite</button>
+            <button class="btn" onclick="sendSMS()">Invite by onclick</button>
+            <button class="btn" id="inviteBtn" ">Invite by onclick</button>
             <button class="btn" onclick="joinCall()">Connect</button>
           </div>
         </div>
