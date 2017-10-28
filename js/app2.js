@@ -11,14 +11,10 @@ app.get('/dashboard', function(req, res) {
     res.sendFile(path.join(__dirname + '/../html/dashboard.html'));
 });
 
-<<<<<<< HEAD
+/*app.get('/video', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../html/video.html'));
+});*/
+
 app.listen(3000, function(){
 	console.info('Server listening on port ' + 3000);
 });
-=======
-app.get('/video', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../html/video.html'));
-});
-
-app.listen(3000);
->>>>>>> b055bb43b19596d42a4e654cdc4fa8271d827e60
