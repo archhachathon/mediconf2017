@@ -14,4 +14,6 @@ app.get('/dashboard', function(req, res) {
     res.sendFile(path.join(__dirname + '/../html/dashboard.html'));
 });
 
-app.listen(3000);
+app.listen(3000, function(){
+	console.info('Server listening on port ' + 3000);
+});

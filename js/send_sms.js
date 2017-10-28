@@ -11,6 +11,6 @@ client.messages
   .create({
     to: ['+13126102079'],
     from: '+13142079612',
-    body: 'test in js folder 6!',
+    body: 'https://5c0d7cfa.ngrok.io/hackathon/mediconf2017/',
   })
   .then((message) => console.log(message.sid));
