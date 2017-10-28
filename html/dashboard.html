@@ -10,10 +10,15 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+<!-- Compiled and minified JavaScript
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="../js/video.js"></script>
+    Including the Vidyo.io package by adding the javascript path. -->
 
-<!-- Compiled and minified JavaScript -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
 
@@ -21,9 +26,83 @@
 </head>
 <body>
 
+<script type="text/javascript">
+
+var vidyoConnector;
+
+ // Callback method when VidyoIO is done loading (pointer to this method is passed in the onload parameter while including the
+ // VidyoClient.js file)
+  function onVidyoClientLoaded(status) {
+    console.log("VidyoClient load state - " + status.state);
+    if (status.state == "READY") {
+      VC.CreateVidyoConnector({
+        viewId:"renderer", // Div ID where the composited video will be rendered, see VidyoConnector.html;
+        viewStyle:"VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
+        remoteParticipants:10, // Maximum number of participants to render
+        logFileFilter:"error",
+        logFileName:"",
+        userData:""
+      }).then(function (vc) {
+        console.log("Create success");
+        vidyoConnector = vc;
+      }).catch(function(error){
+
+      });
+    }
+  }
+
+
+
+  function setName(){
+
+  }
+
+
+  function joinCall(){
+    var name = document.getElementById("displayName").value;
+    // To join a video conference call Connect method
+    vidyoConnector.Connect({
+      host:"prod.vidyo.io",  // Server name, for most production apps it will be prod.vidyo.io
+      token:"cHJvdmlzaW9uAHZpbm9kQGVlZGZkYS52aWR5by5pbwA2MzY3NjQxNjcwNgAAYmJhYzAzNWRkZDFmZDlmNTA2NzljODk3ZGU3OTU4ZjA1NTg4YzY5MmFiMzM5ZmRiZjNjZjA1ZmY3MmY1YzA4ZjJmYzE1ZGMwZWMwNzIwODQyZGYxMDIxNjE1NWQyZTU1",          // Add generated token (https://developer.vidyo.io/documentation/4-1-16-8/getting-started#Tokens)
+      displayName:name,  // Display name
+      resourceId:"demoRoom123", // Room name
+      onSuccess: function(){
+        console.log("Connected!! YAY!");
+      },
+      onFailure: function(reason){
+        console.error("Connection failed");
+      },
+      onDisconnected: function(reason) {
+        console.log(" disconnected - " + reason);
+      }
+    })
+  }
+
+/*document.getElementById("conectBtn").addEventListener("click", function(){
+    console.log('btn clicked');
+    joinCall();
+  });*/
+
+  $('#conectBtn').on('click', function(){
+    console.log('btn clicked');
+    joinCall();
+  });
+
+</script>
+<script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+
   <style media="screen">
     #block {
       border-style: solid;
+    }
+
+    #renderer{
+      height : 500px;
+      width : 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid black 1px;
     }
   </style>
 
@@ -44,34 +123,23 @@
   		<div class="section">
   			<!--   Icon Section   -->
   			<div class="row">
+          <div class="container center">
+            <!--<a href="/dashboard" class="btn">Get Started</a>-->
+            <p><input id="displayName" type="text" placeholder="Display Name"></p>
+            <a class="btn" id="conectBtn">Connect</a>
+
+
+
+
+          </div>
   			</div>
   		</div>
-  		<br>
-  		<br>
   	</div>
     <div class="container">
       <div class="section">
         <!--   Icon Section   -->
-        <div class="row">
-          <div id="block" class="col s12 m4 l8">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">
-                <i class="material-icons">group</i>
-              </h2>
-              <h5 class="center">Video</h5>
-              <p class="light">text</p>
-            </div>
-          </div>
-          <div id="block" class="col s12 m4 l2">
-            <div class="icon-block">
-              <h2 class="center light-blue-text">
-                <i class="material-icons">settings</i>
-              </h2>
-              <h5 class="center">Notification</h5>
-              <p class="light">Twillio</p>
-            </div>
-          </div>
-        </div>
+        <div id="renderer" class="row">
+          <!--<div id="renderer" class="center"></div>-->
       </div>
       <br>
       <br>
@@ -133,5 +201,7 @@
 	</footer>
 
 	<script src="../js/dashboard.js"></script>
+
+  </script>
 </body>
 </html>
