@@ -6,13 +6,14 @@
 
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="../css/dashboard.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
 <!-- Compiled and minified JavaScript
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script src="../js/video.js"></script>
@@ -23,13 +24,9 @@
 
 
 </head>
-
-
 <body>
 
-	<!--<script src="../js/send_sms.js"></script>-->
-
-	<script type="text/javascript">
+<script type="text/javascript">
 
 var vidyoConnector;
 
@@ -76,163 +73,180 @@ var vidyoConnector;
     })
   }
 
+    // Twilio Credentials
+    const accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253';
+    const authToken = '115e66de11ace97dfa3d083ff4980d34';
 
-	// Twilio Credentials
-	const accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253';
-	const authToken = '115e66de11ace97dfa3d083ff4980d34';
+    // require the Twilio module and create a REST client
+    const client = require('twilio')(accountSid, authToken);
 
-	// require the Twilio module and create a REST client
-	const client = require('twilio')(accountSid, authToken);
-
-	//phone numbers
-function sendSMS(){
-	client.messages
-	  .create({
-	    to: ['+13126102079'],
-	    from: '+13142079612',
-	    body: 'https://189e1465.ngrok.io',
-	  })
-	  .then((message) => console.log(message.sid));
-	}
-
+    //phone numbers
+  function sendSMS(){
+    client.messages
+      .create({
+        to: ['+13126102079'],
+        from: '+13142079612',
+        body: 'https://189e1465.ngrok.io',
+      })
+      .then((message) => console.log(message.sid));
+    }
 
 /*document.getElementById("conectBtn").addEventListener("click", function(){
-		alert("btn clicked");
-		console.log('btn clicked');
+    console.log('btn clicked');
     joinCall();
   });*/
 
-  $('#inviteBtn').click(function(){
-		alert("btn clicked");
-		console.log('btn clicked');
-		sendSMS();
-  });
+  // $('#conectBtn').on('click', function(){
+  //   console.log('btn clicked');
+  //   joinCall();
+  // });
+
+  //from marat
+    $('#inviteBtn').click(function(){
+      alert("btn clicked");
+      console.log('btn clicked');
+      sendSMS();
+    });
+
 
 </script>
-	<script
-		src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+<script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+
+  <style media="screen">
+    #block {
+      border-style: solid;
+    }
+
+    #render_containner{
+      display: flex;
+      justify-content: center;
+    }
+
+    #renderer{
+      height : 500px;
+      width : 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid black 1px;
+    }
 
 
-	</script>
-	<style media="screen">
-#block {
-	border-style: solid;
+    #box{
+      width: 700px;
+    }
+
+    .userIO {
+      width: 40%;
+      min-height: 100px;
+      border: 1px solid #848484; 
+      -webkit-border-radius: 30px; 
+      -moz-border-radius: 30px; 
+      border-radius: 30px; 
+      outline:0; 
+      padding-left:10px; 
+      padding-right:10px; 
 }
 
-#render_containner {
-	display: flex;
-	justify-content: center;
-}
+    #translate_boxes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-#renderer {
-	height: 500px;
-	width: 700px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: solid black 1px;
-}
-</style>
+    .footer-text{
+      text-align: center;
+    }
+
+    #team{
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    nav .brand-logo{
+      margin-left: 13%;
+    }
+
+
+
+
+
+
+
+  </style>
+
 	<nav>
 		<div class="nav-wrapper">
 			<a href="#" class="brand-logo">MediConf</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="sass.html">Sass</a></li>
-				<li><a href="badges.html">Components</a></li>
-				<li><a href="collapsible.html">JavaScript</a></li>
-			</ul>
 		</div>
 	</nav>
 
 
 	<main>
-	<div class="container">
-		<div class="section">
-			<!--   Icon Section   -->
-			<div class="row">
-				<div class="container center">
-					<!--<a href="/dashboard" class="btn">Get Started</a>-->
-					<p>
-						<input id="displayName" type="text" placeholder="Display Name">
-					</p>
-					<button class="btn" id="inviteBtn">Invite</button>
-					<button class="btn" onclick="joinCall()">Connect</button>
 
 
+    <!-- conference section -->
+    <div class="container">
+      <div class="section" id="render_containner">
+        <!--   Icon Section   -->
+        <div id="renderer" class="row">
+          <!--<div id="renderer" class="center"></div>-->
+      </div>
+      <br>
+      <br>
+    </div>
+    <!-- conference section end -->
 
 
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="section" id="render_containner">
-			<!--   Icon Section   -->
-			<div id="renderer" class="row">
-				<!--<div id="renderer" class="center"></div>-->
-			</div>
-			<br> <br>
-		</div>
-		<div class="container">
-			<div class="section">
-				<!--   Icon Section   -->
-				<div class="row">
-					<div id="block" class="col s12 m4">
-						<div class="icon-block">
-							<h2 class="center light-blue-text">
-								<i class="material-icons">flash_on</i>
-							</h2>
-							<h5 class="center">Text Box Input</h5>
-							<p class="light">text</p>
-						</div>
-					</div>
-					<div id="block" class="col s12 m4">
-						<div class="icon-block">
-							<h2 class="center light-blue-text">
-								<i class="material-icons">settings</i>
-							</h2>
-							<h5 class="center">Text Box Output</h5>
-							<p class="light">text</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br> <br>
-		</div>
+    <!-- invite button -->
+    <div class="container">
+      <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="container center">
+            <!--<a href="/dashboard" class="btn">Get Started</a>-->
+            <p><input id="displayName" type="text" placeholder="Display Name"></p>
+            <button class="btn" id="inviteBtn">Invite</button>
+            <button class="btn" onclick="joinCall()">Connect</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- invite button end -->
+
+    <!-- google translate text boxes -->
+    <div class="container" id="box">
+      <div class="section" id="translate_boxes">
+        <div type="text" name="voiceIO" class="userIO" id="end_user_voiceInput" ></div>
+        <div type="text" name="voiceIO" class="userIO" id="end_user_voiceTranslate" ></div>
+      </div>
+    </div>
+    <!-- google translate text boxes end -->
+
 	</main>
 
 	<footer class="page-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col l6 s12">
-					<h5 class="white-text">Footer Content</h5>
-					<p class="grey-text text-lighten-4">You can use rows and
-						columns here to organize your footer content.</p>
-				</div>
-				<div class="col l4 offset-l2 s12">
-					<h5 class="white-text">Links</h5>
-					<ul>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-						<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="footer-copyright">
-			<div class="container">
-				© 2014 Copyright Text <a class="grey-text text-lighten-4 right"
-					href="#!">More Links</a>
-			</div>
-		</div>
+        <ul id="team">
+            <li>© 2017 ArchHack Team</li>
+            <li>Junfeng Wang</li>
+            <li>Orik</li>
+            <li>Vinod</li>
+            <li>Marat</li>
+        </ul>
 	</footer>
 
+	<script src="../js/dashboard.js"></script>
 
-
-	</script>
-
-
-
+  </script>
 </body>
 </html>
