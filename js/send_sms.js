@@ -9,8 +9,8 @@ const client = require('twilio')(accountSid, authToken);
 
 client.messages
   .create({
-    to: ['+19174598797','+3126102079'],
+    to: ['+13126102079'],
     from: '+13142079612',
-    body: 'This is test message from twilio!',
+    body: 'test in js folder 6!',
   })
   .then((message) => console.log(message.sid));
