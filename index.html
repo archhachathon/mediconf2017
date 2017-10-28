@@ -1,74 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title></title>
+	<meta charset="utf-8">
+	<title></title>
 
-<link rel="stylesheet" href="css/dashboard.css">
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+	<link rel="stylesheet" href="css/dashboard.css">
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
 
-<!-- Compiled and minified JavaScript -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
+	<!-- embedded css -->
+	<style type="text/css">
+		.footer-text{
+		  text-align: center;
+		}
 
-<style type="text/css">
-	.footer-text{
-	  text-align: center;
-	}
+		#team{
+		  display: flex;
+		  justify-content: space-evenly;
+		}
 
-	#team{
-	  display: flex;
-	  justify-content: space-evenly;
-	}
+		body {
+		  display: flex;
+		  min-height: 100vh;
+		  flex-direction: column;
+		}
 
-	body {
-	  display: flex;
-	  min-height: 100vh;
-	  flex-direction: column;
-	}
+		main {
+		  flex: 1 0 auto;
+		}
 
-	main {
-	  flex: 1 0 auto;
-	}
+		nav .brand-logo{
+			margin-left: 13%;
+		}
 
-	nav .brand-logo{
-		margin-left: 13%;
-	}
+		#indexBtn {
+		    margin-top: 20%;
+		}
+	</style> <!-- embedded css end -->
+</head> <!-- head end -->
 
-	#indexBtn {
-	    margin-top: 20%;
-	}
-</style>
 
-</head>
-<main>
 <body>
-
 	<nav>
 		<div class="nav-wrapper">
 			<a href="#" class="brand-logo">MediConf</a>
 		</div>
 	</nav>
+	
+	<main>
+		<div class="container center" id="indexBtn">
+			<a href="/dashboard" class="btn">Get Started</a>
+	    <a href="/video"class="btn">Video Conference</a>
+		</div>
+	</main>
+</body> <!-- body end -->
 
 
-	<div class="container center" id="indexBtn">
-		<a href="/dashboard" class="btn">Get Started</a>
-    <a href="/video"class="btn">Video Conference</a>
-	</div>
-
-
-
-
-
-
-</body>
-</main>
 
 <footer class="page-footer">
     <ul id="team">
@@ -78,6 +73,6 @@
         <li>Vinod</li>
         <li>Marat</li>
     </ul>
-</footer>
-<script src="./js/dashboard.js"></script>
+</footer> <!-- footer end -->
+
 </html>

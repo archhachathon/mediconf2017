@@ -1,115 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Dashboard</title>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
 
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="../css/dashboard.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Compiled and minified JavaScript
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="../js/video.js"></script>
-    Including the Vidyo.io package by adding the javascript path. -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
 
+  <!-- importing scripts -->
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+ 
+  <script type="text/javascript">
+    var vidyoConnector;
 
-
-
-
-</head>
-<body>
-
-<script type="text/javascript">
-
-var vidyoConnector;
-
- // Callback method when VidyoIO is done loading (pointer to this method is passed in the onload parameter while including the
- // VidyoClient.js file)
-  function onVidyoClientLoaded(status) {
+   // Callback method when VidyoIO is done loading (pointer to this method is passed in the onload parameter while including the
+   // VidyoClient.js file)
+   function onVidyoClientLoaded(status) {
     console.log("VidyoClient load state - " + status.state);
     if (status.state == "READY") {
       VC.CreateVidyoConnector({
-        viewId:"renderer", // Div ID where the composited video will be rendered, see VidyoConnector.html;
-        viewStyle:"VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
-        remoteParticipants:10, // Maximum number of participants to render
-        logFileFilter:"error",
-        logFileName:"",
-        userData:""
-      }).then(function (vc) {
-        console.log("Create success");
-        vidyoConnector = vc;
-      }).catch(function(error){
+          viewId:"renderer", // Div ID where the composited video will be rendered, see VidyoConnector.html;
+          viewStyle:"VIDYO_CONNECTORVIEWSTYLE_Default", // Visual style of the composited renderer
+          remoteParticipants:10, // Maximum number of participants to render
+          logFileFilter:"error",
+          logFileName:"",
+          userData:""
+        }).then(function (vc) {
+          console.log("Create success");
+          vidyoConnector = vc;
+        }).catch(function(error){
 
-      });
-    }
-  }
-
-
-
-  function joinCall(){
-    var name = document.getElementById("displayName").value;
-    // To join a video conference call Connect method
-    vidyoConnector.Connect({
-      host:"prod.vidyo.io",  // Server name, for most production apps it will be prod.vidyo.io
-      token:"cHJvdmlzaW9uAE9yaWtAMmQ3YTBlLnZpZHlvLmlvADYzNjc2NDM3MjU3AAAyMDY5OWQ0NzEyYWQ3OTQyMjhkMjE1YjQ5YmUyNTQ4NTg4Y2YxYWIzNWM2ZjQ4MGM3NTIxMmU5YWVjZGNjOTZjMTUzMWFmYzg2YzA3MWI2OTdhMjczYzNkNWFiMWEzMDc=",          // Add generated token (https://developer.vidyo.io/documentation/4-1-16-8/getting-started#Tokens)
-      displayName:name,  // Display name
-      resourceId:"demoRoom123", // Room name
-      onSuccess: function(){
-        console.log("Connected!! YAY!");
-      },
-      onFailure: function(reason){
-        console.error("Connection failed");
-      },
-      onDisconnected: function(reason) {
-        console.log(" disconnected - " + reason);
+        });
       }
-    })
-  }
-
-    // Twilio Credentials
-    const accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253';
-    const authToken = '115e66de11ace97dfa3d083ff4980d34';
-
-    // require the Twilio module and create a REST client
-    const client = require('twilio')(accountSid, authToken);
-
-    //phone numbers
-  function sendSMS(){
-    client.messages
-      .create({
-        to: ['+13126102079'],
-        from: '+13142079612',
-        body: 'https://189e1465.ngrok.io',
-      })
-      .then((message) => console.log(message.sid));
     }
 
-/*document.getElementById("conectBtn").addEventListener("click", function(){
-    console.log('btn clicked');
-    joinCall();
-  });*/
+    function joinCall(){
+      var name = document.getElementById("displayName").value;
+      // To join a video conference call Connect method
+      vidyoConnector.Connect({
+        host:"prod.vidyo.io",  // Server name, for most production apps it will be prod.vidyo.io
+        // Add generated token (https://developer.vidyo.io/documentation/4-1-16-8/getting-started#Tokens)
+        token:"cHJvdmlzaW9uAE9yaWtAMmQ3YTBlLnZpZHlvLmlvADYzNjc2NDM3MjU3AAAyMDY5OWQ0NzEyYWQ3OTQyMjhkMjE1YjQ5YmUyNTQ4NTg4Y2YxYWIzNWM2ZjQ4MGM3NTIxMmU5YWVjZGNjOTZjMTUzMWFmYzg2YzA3MWI2OTdhMjczYzNkNWFiMWEzMDc=",       
+        displayName:name,  // Display name
+        resourceId:"demoRoom123", // Room name
+        onSuccess: function(){
+          console.log("Connected!! YAY!");
+        },
+        onFailure: function(reason){
+          console.error("Connection failed");
+        },
+        onDisconnected: function(reason) {
+          console.log(" disconnected - " + reason);
+        }
+      })
+    }
 
-  // $('#conectBtn').on('click', function(){
-  //   console.log('btn clicked');
-  //   joinCall();
-  // });
+      // Twilio Credentials
+      const accountSid = 'AC2f877c67f02edcbe8479a8fa21b89253';
+      const authToken = '115e66de11ace97dfa3d083ff4980d34';
 
-  //from marat
-    $('#inviteBtn').click(function(){
-      alert("btn clicked");
-      console.log('btn clicked');
-      sendSMS();
-    });
+      // require the Twilio module and create a REST client
+      const client = require('twilio')(accountSid, authToken);
 
+      //phone numbers
+      function sendSMS(){
+        client.messages
+        .create({
+          to: ['+13126102079'],
+          from: '+13142079612',
+          body: 'https://189e1465.ngrok.io',
+        })
+        .then((message) => console.log(message.sid));
+      }
+      $('#inviteBtn').click(function(){
+        alert("btn clicked");
+  
+        console.log('btn clicked');
+        sendSMS();
+      });
+  </script>
+  <script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
+  <!-- importing scripts end -->
 
-</script>
-<script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
-
-  <style media="screen">
+  <!-- embeded css -->
+  <style type="text/css">
     #block {
       border-style: solid;
     }
@@ -128,7 +109,6 @@ var vidyoConnector;
       border: solid black 1px;
     }
 
-
     #box{
       width: 700px;
     }
@@ -136,19 +116,19 @@ var vidyoConnector;
     .userIO {
       width: 40%;
       min-height: 100px;
-      border: 1px solid #848484;
-      -webkit-border-radius: 30px;
-      -moz-border-radius: 30px;
-      border-radius: 30px;
-      outline:0;
-      padding-left:10px;
-      padding-right:10px;
-}
+      border: 1px solid #848484; 
+      -webkit-border-radius: 30px; 
+      -moz-border-radius: 30px; 
+      border-radius: 30px; 
+      outline:0; 
+      padding-left:10px; 
+      padding-right:10px; 
+    }
 
     #translate_boxes {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
     .footer-text{
@@ -173,25 +153,18 @@ var vidyoConnector;
     nav .brand-logo{
       margin-left: 13%;
     }
-
-
-
-
-
-
-
   </style>
+</head>
 
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo">MediConf</a>
-		</div>
-	</nav>
+<body>
 
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">MediConf</a>
+    </div>
+  </nav>
 
-	<main>
-
-
+  <main>
     <!-- conference section -->
     <div class="container">
       <div class="section" id="render_containner">
@@ -229,10 +202,9 @@ var vidyoConnector;
       </div>
     </div>
     <!-- google translate text boxes end -->
+  </main>
 
-	</main>
-
-	<footer class="page-footer">
+  <footer class="page-footer">
         <ul id="team">
             <li>© 2017 ArchHack Team</li>
             <li>Junfeng Wang</li>
@@ -240,8 +212,6 @@ var vidyoConnector;
             <li>Vinod</li>
             <li>Marat</li>
         </ul>
-	</footer>
-
-  </script>
+  </footer>
 </body>
 </html>
