@@ -1,0 +1,14 @@
+{
+  "name": "twillio_workshop",
+  "version": "1.0.0",
+  "description": "twilio sms test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alex wang",
+  "license": "ISC",
+  "dependencies": {
+    "twilio": "^3.9.1"
+  }
+}
