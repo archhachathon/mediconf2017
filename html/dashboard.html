@@ -42,7 +42,7 @@
       vidyoConnector.Connect({
         host:"prod.vidyo.io",  // Server name, for most production apps it will be prod.vidyo.io
         // Add generated token (https://developer.vidyo.io/documentation/4-1-16-8/getting-started#Tokens)
-        token:"cHJvdmlzaW9uAE9yaWtAMmQ3YTBlLnZpZHlvLmlvADYzNjc2NDM3MjU3AAAyMDY5OWQ0NzEyYWQ3OTQyMjhkMjE1YjQ5YmUyNTQ4NTg4Y2YxYWIzNWM2ZjQ4MGM3NTIxMmU5YWVjZGNjOTZjMTUzMWFmYzg2YzA3MWI2OTdhMjczYzNkNWFiMWEzMDc=",       
+        token:"cHJvdmlzaW9uAHZpbm9kQGVlZGZkYS52aWR5by5pbwA2MzY3NjQ1NzE4MAAAYmRkMmYwYWNkMGNiOTAxMWU4MjRmN2VmNmY2NTI2NDc4NzRmN2U0N2IzNzgxZTU2MTNkNWU2ZDA3NjMyNTA5ZmUyZDBmOTFiMDBmZWFhYzI5MzcwMmQ2OWY4MjE5Zjk0",       
         displayName:name,  // Display name
         resourceId:"demoRoom123", // Room name
         onSuccess: function(){
@@ -69,20 +69,36 @@
         }
       });
     }*/
+
+    function sendSMS(){
+      var xhr = new XMLHttpRequest(); //This is all you would need for IE7+
+      var xhr_results = '';
+      if (xhr != null) {
+          console.log("hello1")
+          xhr.open("GET", "/dashboard/sendSMS", true);
+          xhr.onreadystatechange = function(){
+              if (xhr.readyState === 4) {
+                console.log("hello2")
+                xhr_results = xhr.responseText;
+              }
+          };
+          xhr.send();
+      } 
+    } 
     
 
 
 
   </script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
       (function(){
         $('#inviteBtn').click(function(){
           console.log('btn clicked');
           sendSMS();
         });
       })();
-    </script>
+    </script> -->
 
 
 
