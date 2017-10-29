@@ -84,6 +84,11 @@
           };
           xhr.send();
       } 
+    }
+
+    function join(){
+      sendSMS();
+      joinCall();
     } 
     
 
@@ -205,9 +210,7 @@
           <div class="container center">
             <!--<a href="/dashboard" class="btn">Get Started</a>-->
             <p><input id="displayName" type="text" placeholder="Display Name"></p>
-            <button class="btn" onclick="sendSMS()">Invite by onclick</button>
-            <button class="btn" id="inviteBtn" ">Invite by onclick</button>
-            <button class="btn" onclick="joinCall()">Connect</button>
+            <button class="btn" onclick="join()">Connect</button>
           </div>
         </div>
       </div>
