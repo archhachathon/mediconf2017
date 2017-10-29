@@ -17,18 +17,13 @@
       <link rel = "stylesheet"
          href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
       <script type = "text/javascript"
-         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-      </script> 
+      </script>
 
 
 
   <script type="text/javascript">
-
-
-
-
-
     var vidyoConnector;
 
    // Callback method when VidyoIO is done loading (pointer to this method is passed in the onload parameter while including the
@@ -58,7 +53,7 @@
       vidyoConnector.Connect({
         host:"prod.vidyo.io",  // Server name, for most production apps it will be prod.vidyo.io
         // Add generated token (https://developer.vidyo.io/documentation/4-1-16-8/getting-started#Tokens)
-        token:"cHJvdmlzaW9uAE9yaWtAMmQ3YTBlLnZpZHlvLmlvADYzNjc3NDk3MzE3AAA5ZWMwZTM1ZDYzMWZkNGJmMmU1MzA1YmQzOGUzZWNjNGUyNjE5ZTI4MmQ5MmE4YzNmN2FhZWFmZWZkMWEzNGNjZjcyNzM5YzBlMWZiNWVlOWQxOGUzMWEwNzVhZTBiMDE=",       
+        token:"cHJvdmlzaW9uAE9yaWtAMmQ3YTBlLnZpZHlvLmlvADYzNjc2NTExOTE0AAAyOWJjYTU1OTBmNjU2ZTY5Njc2NTllMTY2NzI4NjMzZGE4Njg5N2E2OTM2ZjFlODRhMmJmNzY3MDQyYjNkOWZkMjFjMzY2YzJlZWY4YTg1YWNkNTM2NTA0ZDdkMmUwZjA=",
         displayName:name,  // Display name
         resourceId:"demoRoom123", // Room name
         onSuccess: function(){
@@ -99,15 +94,14 @@
               }
           };
           xhr.send();
-          alert('Message sent with the url, patient can join the call');
-      } 
+      }
     }
 
     function join(){
       sendSMS();
       joinCall();
-    } 
-    
+    }
+
 
 function Translator() {
     //needed
@@ -115,7 +109,7 @@ function Translator() {
         initTranscript(callback, language);
     };
 
-    
+
     //needed
     this.speakTextUsingGoogleSpeaker = function(args) {
         var textToSpeak = args.textToSpeak;
@@ -274,7 +268,7 @@ $(function() {
 });
   </script>
 
-    
+
 
 <!--       <script>
          $(document).ready(function() {
@@ -294,7 +288,7 @@ $(function() {
 
 
   <script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
-  
+
   <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script src="https://media.twiliocdn.com/sdk/js/chat/v1.2/twilio-chat.min.js"></script>
   <!-- <script type="text/javascript" src="Translator.js"></script> -->
@@ -328,13 +322,13 @@ $(function() {
     .userIO {
       width: 40%;
       min-height: 100px;
-      /*border: 1px solid #848484; 
-      -webkit-border-radius: 30px; 
-      -moz-border-radius: 30px; 
+      /*border: 1px solid #848484;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
       border-radius: 30px; */
-      outline:0; 
-      padding-left:10px; 
-      padding-right:10px; 
+      outline:0;
+      padding-left:10px;
+      padding-right:10px;
     }
 
     #drop_translate_boxes{
@@ -406,8 +400,8 @@ $(function() {
         <div class="row">
           <div class="container center">
             <!--<a href="/dashboard" class="btn">Get Started</a>-->
-            <input id="displayName" class="col s9" type="text" placeholder="Display Name">
-            <button class="btn col s2 offset-s1" onclick="join()">Connect</button>
+            <input id="displayName" class="col s6" type="text" placeholder="Display Name">
+            <button class="btn col s3 offset-s3" onclick="join()">Connect</button>
           </div>
         </div>
       </div>
@@ -426,38 +420,30 @@ $(function() {
 
 
     <!-- google translate text boxes -->
-    
+    <div class="container" id="box">
 
       <div id="drop2_translate_boxes">
-        <select id="convert-from">
-          <option value="af">Afrikaans (af)</option><option value="sq">Albanian (sq)</option><option value="am">Amharic (am)</option><option value="ar">Arabic (ar)</option><option value="hy">Armenian (hy)</option><option value="az">Azerbaijani (az)</option><option value="eu">Basque (eu)</option><option value="be">Belarusian (be)</option><option value="bn">Bengali (bn)</option><option value="bs">Bosnian (bs)</option><option value="bg">Bulgarian (bg)</option><option value="ca">Catalan (ca)</option><option value="ceb">Cebuano (ceb)</option><option value="ny">Chichewa (ny)</option><option value="zh">Chinese (Simplified) (zh)</option><option value="zh-TW">Chinese (Traditional) (zh-TW)</option><option value="co">Corsican (co)</option><option value="hr">Croatian (hr)</option><option value="cs">Czech (cs)</option><option value="da">Danish (da)</option><option value="nl">Dutch (nl)</option><option value="en">English (en)</option><option value="eo">Esperanto (eo)</option><option value="et">Estonian (et)</option><option value="tl">Filipino (tl)</option><option value="fi">Finnish (fi)</option><option value="fr">French (fr)</option><option value="fy">Frisian (fy)</option><option value="gl">Galician (gl)</option><option value="ka">Georgian (ka)</option><option value="de">German (de)</option><option value="el">Greek (el)</option><option value="gu">Gujarati (gu)</option><option value="ht">Haitian Creole (ht)</option><option value="ha">Hausa (ha)</option><option value="haw">Hawaiian (haw)</option><option value="iw">Hebrew (iw)</option><option value="hi">Hindi (hi)</option><option value="hmn">Hmong (hmn)</option><option value="hu">Hungarian (hu)</option><option value="is">Icelandic (is)</option><option value="ig">Igbo (ig)</option><option value="id">Indonesian (id)</option><option value="ga">Irish (ga)</option><option value="it">Italian (it)</option><option value="ja">Japanese (ja)</option><option value="jw">Javanese (jw)</option><option value="kn">Kannada (kn)</option><option value="kk">Kazakh (kk)</option><option value="km">Khmer (km)</option><option value="ko">Korean (ko)</option><option value="ku">Kurdish (Kurmanji) (ku)</option><option value="ky">Kyrgyz (ky)</option><option value="lo">Lao (lo)</option><option value="la">Latin (la)</option><option value="lv">Latvian (lv)</option><option value="lt">Lithuanian (lt)</option><option value="lb">Luxembourgish (lb)</option><option value="mk">Macedonian (mk)</option><option value="mg">Malagasy (mg)</option><option value="ms">Malay (ms)</option><option value="ml">Malayalam (ml)</option><option value="mt">Maltese (mt)</option><option value="mi">Maori (mi)</option><option value="mr">Marathi (mr)</option><option value="mn">Mongolian (mn)</option><option value="my">Myanmar (Burmese) (my)</option><option value="ne">Nepali (ne)</option><option value="no">Norwegian (no)</option><option value="ps">Pashto (ps)</option><option value="fa">Persian (fa)</option><option value="pl">Polish (pl)</option><option value="pt">Portuguese (pt)</option><option value="pa">Punjabi (pa)</option><option value="ro">Romanian (ro)</option><option value="ru">Russian (ru)</option><option value="sm">Samoan (sm)</option><option value="gd">Scots Gaelic (gd)</option><option value="sr">Serbian (sr)</option><option value="st">Sesotho (st)</option><option value="sn">Shona (sn)</option><option value="sd">Sindhi (sd)</option><option value="si">Sinhala (si)</option><option value="sk">Slovak (sk)</option><option value="sl">Slovenian (sl)</option><option value="so">Somali (so)</option><option value="es">Spanish (es)</option><option value="su">Sundanese (su)</option><option value="sw">Swahili (sw)</option><option value="sv">Swedish (sv)</option><option value="tg">Tajik (tg)</option><option value="ta">Tamil (ta)</option><option value="te">Telugu (te)</option><option value="th">Thai (th)</option><option value="tr">Turkish (tr)</option><option value="uk">Ukrainian (uk)</option><option value="ur">Urdu (ur)</option><option value="uz">Uzbek (uz)</option><option value="vi">Vietnamese (vi)</option><option value="cy">Welsh (cy)</option><option value="xh">Xhosa (xh)</option><option value="yi">Yiddish (yi)</option><option value="yo">Yoruba (yo)</option><option value="zu">Zulu (zu)</option>
-        </select>
-        <select id="convert-into">
-          <option value="af">Afrikaans (af)</option><option value="sq">Albanian (sq)</option><option value="am">Amharic (am)</option><option value="ar">Arabic (ar)</option><option value="hy">Armenian (hy)</option><option value="az">Azerbaijani (az)</option><option value="eu">Basque (eu)</option><option value="be">Belarusian (be)</option><option value="bn">Bengali (bn)</option><option value="bs">Bosnian (bs)</option><option value="bg">Bulgarian (bg)</option><option value="ca">Catalan (ca)</option><option value="ceb">Cebuano (ceb)</option><option value="ny">Chichewa (ny)</option><option value="zh">Chinese (Simplified) (zh)</option><option value="zh-TW">Chinese (Traditional) (zh-TW)</option><option value="co">Corsican (co)</option><option value="hr">Croatian (hr)</option><option value="cs">Czech (cs)</option><option value="da">Danish (da)</option><option value="nl">Dutch (nl)</option><option value="en">English (en)</option><option value="eo">Esperanto (eo)</option><option value="et">Estonian (et)</option><option value="tl">Filipino (tl)</option><option value="fi">Finnish (fi)</option><option value="fr">French (fr)</option><option value="fy">Frisian (fy)</option><option value="gl">Galician (gl)</option><option value="ka">Georgian (ka)</option><option value="de">German (de)</option><option value="el">Greek (el)</option><option value="gu">Gujarati (gu)</option><option value="ht">Haitian Creole (ht)</option><option value="ha">Hausa (ha)</option><option value="haw">Hawaiian (haw)</option><option value="iw">Hebrew (iw)</option><option value="hi">Hindi (hi)</option><option value="hmn">Hmong (hmn)</option><option value="hu">Hungarian (hu)</option><option value="is">Icelandic (is)</option><option value="ig">Igbo (ig)</option><option value="id">Indonesian (id)</option><option value="ga">Irish (ga)</option><option value="it">Italian (it)</option><option value="ja">Japanese (ja)</option><option value="jw">Javanese (jw)</option><option value="kn">Kannada (kn)</option><option value="kk">Kazakh (kk)</option><option value="km">Khmer (km)</option><option value="ko">Korean (ko)</option><option value="ku">Kurdish (Kurmanji) (ku)</option><option value="ky">Kyrgyz (ky)</option><option value="lo">Lao (lo)</option><option value="la">Latin (la)</option><option value="lv">Latvian (lv)</option><option value="lt">Lithuanian (lt)</option><option value="lb">Luxembourgish (lb)</option><option value="mk">Macedonian (mk)</option><option value="mg">Malagasy (mg)</option><option value="ms">Malay (ms)</option><option value="ml">Malayalam (ml)</option><option value="mt">Maltese (mt)</option><option value="mi">Maori (mi)</option><option value="mr">Marathi (mr)</option><option value="mn">Mongolian (mn)</option><option value="my">Myanmar (Burmese) (my)</option><option value="ne">Nepali (ne)</option><option value="no">Norwegian (no)</option><option value="ps">Pashto (ps)</option><option value="fa">Persian (fa)</option><option value="pl">Polish (pl)</option><option value="pt">Portuguese (pt)</option><option value="pa">Punjabi (pa)</option><option value="ro">Romanian (ro)</option><option value="ru">Russian (ru)</option><option value="sm">Samoan (sm)</option><option value="gd">Scots Gaelic (gd)</option><option value="sr">Serbian (sr)</option><option value="st">Sesotho (st)</option><option value="sn">Shona (sn)</option><option value="sd">Sindhi (sd)</option><option value="si">Sinhala (si)</option><option value="sk">Slovak (sk)</option><option value="sl">Slovenian (sl)</option><option value="so">Somali (so)</option><option value="es">Spanish (es)</option><option value="su">Sundanese (su)</option><option value="sw">Swahili (sw)</option><option value="sv">Swedish (sv)</option><option value="tg">Tajik (tg)</option><option value="ta">Tamil (ta)</option><option value="te">Telugu (te)</option><option value="th">Thai (th)</option><option value="tr">Turkish (tr)</option><option value="uk">Ukrainian (uk)</option><option value="ur">Urdu (ur)</option><option value="uz">Uzbek (uz)</option><option value="vi">Vietnamese (vi)</option><option value="cy">Welsh (cy)</option><option value="xh">Xhosa (xh)</option><option value="yi">Yiddish (yi)</option><option value="yo">Yoruba (yo)</option><option value="zu">Zulu (zu)</option>
-        </select>
+        <select id="convert-from"><option value="af">Afrikaans (af)</option><option value="sq">Albanian (sq)</option><option value="am">Amharic (am)</option><option value="ar">Arabic (ar)</option><option value="hy">Armenian (hy)</option><option value="az">Azerbaijani (az)</option><option value="eu">Basque (eu)</option><option value="be">Belarusian (be)</option><option value="bn">Bengali (bn)</option><option value="bs">Bosnian (bs)</option><option value="bg">Bulgarian (bg)</option><option value="ca">Catalan (ca)</option><option value="ceb">Cebuano (ceb)</option><option value="ny">Chichewa (ny)</option><option value="zh">Chinese (Simplified) (zh)</option><option value="zh-TW">Chinese (Traditional) (zh-TW)</option><option value="co">Corsican (co)</option><option value="hr">Croatian (hr)</option><option value="cs">Czech (cs)</option><option value="da">Danish (da)</option><option value="nl">Dutch (nl)</option><option value="en">English (en)</option><option value="eo">Esperanto (eo)</option><option value="et">Estonian (et)</option><option value="tl">Filipino (tl)</option><option value="fi">Finnish (fi)</option><option value="fr">French (fr)</option><option value="fy">Frisian (fy)</option><option value="gl">Galician (gl)</option><option value="ka">Georgian (ka)</option><option value="de">German (de)</option><option value="el">Greek (el)</option><option value="gu">Gujarati (gu)</option><option value="ht">Haitian Creole (ht)</option><option value="ha">Hausa (ha)</option><option value="haw">Hawaiian (haw)</option><option value="iw">Hebrew (iw)</option><option value="hi">Hindi (hi)</option><option value="hmn">Hmong (hmn)</option><option value="hu">Hungarian (hu)</option><option value="is">Icelandic (is)</option><option value="ig">Igbo (ig)</option><option value="id">Indonesian (id)</option><option value="ga">Irish (ga)</option><option value="it">Italian (it)</option><option value="ja">Japanese (ja)</option><option value="jw">Javanese (jw)</option><option value="kn">Kannada (kn)</option><option value="kk">Kazakh (kk)</option><option value="km">Khmer (km)</option><option value="ko">Korean (ko)</option><option value="ku">Kurdish (Kurmanji) (ku)</option><option value="ky">Kyrgyz (ky)</option><option value="lo">Lao (lo)</option><option value="la">Latin (la)</option><option value="lv">Latvian (lv)</option><option value="lt">Lithuanian (lt)</option><option value="lb">Luxembourgish (lb)</option><option value="mk">Macedonian (mk)</option><option value="mg">Malagasy (mg)</option><option value="ms">Malay (ms)</option><option value="ml">Malayalam (ml)</option><option value="mt">Maltese (mt)</option><option value="mi">Maori (mi)</option><option value="mr">Marathi (mr)</option><option value="mn">Mongolian (mn)</option><option value="my">Myanmar (Burmese) (my)</option><option value="ne">Nepali (ne)</option><option value="no">Norwegian (no)</option><option value="ps">Pashto (ps)</option><option value="fa">Persian (fa)</option><option value="pl">Polish (pl)</option><option value="pt">Portuguese (pt)</option><option value="pa">Punjabi (pa)</option><option value="ro">Romanian (ro)</option><option value="ru">Russian (ru)</option><option value="sm">Samoan (sm)</option><option value="gd">Scots Gaelic (gd)</option><option value="sr">Serbian (sr)</option><option value="st">Sesotho (st)</option><option value="sn">Shona (sn)</option><option value="sd">Sindhi (sd)</option><option value="si">Sinhala (si)</option><option value="sk">Slovak (sk)</option><option value="sl">Slovenian (sl)</option><option value="so">Somali (so)</option><option value="es">Spanish (es)</option><option value="su">Sundanese (su)</option><option value="sw">Swahili (sw)</option><option value="sv">Swedish (sv)</option><option value="tg">Tajik (tg)</option><option value="ta">Tamil (ta)</option><option value="te">Telugu (te)</option><option value="th">Thai (th)</option><option value="tr">Turkish (tr)</option><option value="uk">Ukrainian (uk)</option><option value="ur">Urdu (ur)</option><option value="uz">Uzbek (uz)</option><option value="vi">Vietnamese (vi)</option><option value="cy">Welsh (cy)</option><option value="xh">Xhosa (xh)</option><option value="yi">Yiddish (yi)</option><option value="yo">Yoruba (yo)</option><option value="zu">Zulu (zu)</option></select>
+        <select id="convert-into"><option value="af">Afrikaans (af)</option><option value="sq">Albanian (sq)</option><option value="am">Amharic (am)</option><option value="ar">Arabic (ar)</option><option value="hy">Armenian (hy)</option><option value="az">Azerbaijani (az)</option><option value="eu">Basque (eu)</option><option value="be">Belarusian (be)</option><option value="bn">Bengali (bn)</option><option value="bs">Bosnian (bs)</option><option value="bg">Bulgarian (bg)</option><option value="ca">Catalan (ca)</option><option value="ceb">Cebuano (ceb)</option><option value="ny">Chichewa (ny)</option><option value="zh">Chinese (Simplified) (zh)</option><option value="zh-TW">Chinese (Traditional) (zh-TW)</option><option value="co">Corsican (co)</option><option value="hr">Croatian (hr)</option><option value="cs">Czech (cs)</option><option value="da">Danish (da)</option><option value="nl">Dutch (nl)</option><option value="en">English (en)</option><option value="eo">Esperanto (eo)</option><option value="et">Estonian (et)</option><option value="tl">Filipino (tl)</option><option value="fi">Finnish (fi)</option><option value="fr">French (fr)</option><option value="fy">Frisian (fy)</option><option value="gl">Galician (gl)</option><option value="ka">Georgian (ka)</option><option value="de">German (de)</option><option value="el">Greek (el)</option><option value="gu">Gujarati (gu)</option><option value="ht">Haitian Creole (ht)</option><option value="ha">Hausa (ha)</option><option value="haw">Hawaiian (haw)</option><option value="iw">Hebrew (iw)</option><option value="hi">Hindi (hi)</option><option value="hmn">Hmong (hmn)</option><option value="hu">Hungarian (hu)</option><option value="is">Icelandic (is)</option><option value="ig">Igbo (ig)</option><option value="id">Indonesian (id)</option><option value="ga">Irish (ga)</option><option value="it">Italian (it)</option><option value="ja">Japanese (ja)</option><option value="jw">Javanese (jw)</option><option value="kn">Kannada (kn)</option><option value="kk">Kazakh (kk)</option><option value="km">Khmer (km)</option><option value="ko">Korean (ko)</option><option value="ku">Kurdish (Kurmanji) (ku)</option><option value="ky">Kyrgyz (ky)</option><option value="lo">Lao (lo)</option><option value="la">Latin (la)</option><option value="lv">Latvian (lv)</option><option value="lt">Lithuanian (lt)</option><option value="lb">Luxembourgish (lb)</option><option value="mk">Macedonian (mk)</option><option value="mg">Malagasy (mg)</option><option value="ms">Malay (ms)</option><option value="ml">Malayalam (ml)</option><option value="mt">Maltese (mt)</option><option value="mi">Maori (mi)</option><option value="mr">Marathi (mr)</option><option value="mn">Mongolian (mn)</option><option value="my">Myanmar (Burmese) (my)</option><option value="ne">Nepali (ne)</option><option value="no">Norwegian (no)</option><option value="ps">Pashto (ps)</option><option value="fa">Persian (fa)</option><option value="pl">Polish (pl)</option><option value="pt">Portuguese (pt)</option><option value="pa">Punjabi (pa)</option><option value="ro">Romanian (ro)</option><option value="ru">Russian (ru)</option><option value="sm">Samoan (sm)</option><option value="gd">Scots Gaelic (gd)</option><option value="sr">Serbian (sr)</option><option value="st">Sesotho (st)</option><option value="sn">Shona (sn)</option><option value="sd">Sindhi (sd)</option><option value="si">Sinhala (si)</option><option value="sk">Slovak (sk)</option><option value="sl">Slovenian (sl)</option><option value="so">Somali (so)</option><option value="es">Spanish (es)</option><option value="su">Sundanese (su)</option><option value="sw">Swahili (sw)</option><option value="sv">Swedish (sv)</option><option value="tg">Tajik (tg)</option><option value="ta">Tamil (ta)</option><option value="te">Telugu (te)</option><option value="th">Thai (th)</option><option value="tr">Turkish (tr)</option><option value="uk">Ukrainian (uk)</option><option value="ur">Urdu (ur)</option><option value="uz">Uzbek (uz)</option><option value="vi">Vietnamese (vi)</option><option value="cy">Welsh (cy)</option><option value="xh">Xhosa (xh)</option><option value="yi">Yiddish (yi)</option><option value="yo">Yoruba (yo)</option><option value="zu">Zulu (zu)</option></select>
       </div>
 
 
       <div class="section" id="translate_boxes">
         <div type="text" name="voiceIO" class="userIO" id="end_user_voiceInput" >
-          <textarea id="textarea-from"></textarea>
+          <textarea id="textarea-from" rows="8"></textarea>
         </div>
         <div type="text" name="voiceIO" class="userIO" id="end_user_voiceTranslate" >
-          <textarea id="textarea-to"></textarea>
+          <textarea id="textarea-to" rows="8"></textarea>
         </div>
       </div>
 
-      <p>
-        <button id="btn-convert-text" class="btn" >Convert Your Text Input</button>
-      </p>
-      <p>
-        
-      <button id="btn-convert-voice" class="btn">Speak & Convert Your Voice</button>
-      </p>
+      <p><button id="btn-convert-text" class="btn ">Convert Your Text Input</button></p>
+      <p><button id="btn-convert-voice" class="btn ">Speak & Convert Your Voice</button></p>
 
 
 
     </div>
+
 
 
 
@@ -472,7 +458,7 @@ $(function() {
         <ul id="team">
             <li>© 2017 ArchHack Team</li>
             <li>Junfeng Wang</li>
-            <li>Orik hoxha</li>
+            <li>Orik Hoxha</li>
             <li>Vinod Thorat</li>
             <li>Marat Tulepbayev-Monnié</li>
         </ul>
@@ -517,44 +503,42 @@ $(function() {
                 convertInto.appendChild(option2);
             });
 
-            console.log(languages);
-
             sessionStorageGetItem();
 
-            
+
         });
-        
+
         var textareaFrom = document.getElementById('textarea-from');
         var textareaTo = document.getElementById('textarea-to');
-        
+
         function getLanguages() {
             var from = document.getElementById('convert-from').value.split(' (')[0];
             var to = document.getElementById('convert-into').value.split(' (')[0];
-            
+
             return {
                 from: from,
                 to: to
             };
         }
-        
+
         document.getElementById('btn-convert-voice').onclick = function() {
             this.disabled = true;
             this.innerHTML = 'Start Speaking!';
 
             var languages = getLanguages();
-            
+
             translator.voiceToText(function(text) {
                 textareaFrom.value += text;
-                
+
                 //Go for the translation
                 document.getElementById('btn-convert-text').onclick(true);
             }, languages.from);
         };
-        
+
         document.getElementById('btn-convert-text').onclick = function(speakAsWell) {
             var languages = getLanguages();
-            
-        
+
+
             //get the value from the speech recognized
             translator.translateLanguage(textareaFrom.value, {
                 from: languages.from,
@@ -562,7 +546,7 @@ $(function() {
                 callback: function(translatedText) {
                     textareaTo.value += translatedText;
                     sessionStorage.setItem('textarea-to', textareaTo.value);
-                
+
                     if(speakAsWell !== true) return;
                     translator.speakTextUsingGoogleSpeaker({
                         textToSpeak: translatedText,
@@ -571,33 +555,33 @@ $(function() {
                         // please use your own API key; if possible
                         api_key: 'AIzaSyBgXKqLkQViSS9Uq_KWE2xZJs7qzJlOz6A'
                     });
-                    
+
                 }
             });
         };
-        
+
         document.getElementById('convert-from').onchange = function() {
             sessionStorage.setItem('convert-from', this.value);
         };
-        
+
         document.getElementById('convert-into').onchange = function() {
             sessionStorage.setItem('convert-into', this.value);
         };
-        
+
         textareaFrom.onchange = function() {
             sessionStorage.setItem('textarea-from', this.value);
         };
-        
+
         textareaTo.onchange = function() {
             sessionStorage.setItem('textarea-to', this.value);
         };
-        
+
 
         function sessionStorageGetItem() {
             if(sessionStorage.getItem('convert-from')) {
                 document.getElementById('convert-from').value = sessionStorage.getItem('convert-from');
             }
-            
+
             if(sessionStorage.getItem('convert-into')) {
                 document.getElementById('convert-into').value = sessionStorage.getItem('convert-into');
             }
@@ -605,11 +589,11 @@ $(function() {
             if(sessionStorage.getItem('textarea-from')) {
                 textareaFrom.value = sessionStorage.getItem('textarea-from');
             }
-            
+
             if(sessionStorage.getItem('textarea-to')) {
                 textareaTo.value = sessionStorage.getItem('textarea-to');
             }
-            
+
         }
 
         sessionStorageGetItem();
