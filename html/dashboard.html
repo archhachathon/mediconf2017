@@ -55,13 +55,45 @@
           console.log(" disconnected - " + reason);
         }
       })
-    }    
+    }
 
+    /*
+    function sendSMS(){
+      console.log("Hey mannnnnnnnnnn");
+      $.ajax({
+        console.log("hello")
+        type: 'GET',
+        url: "/dashboard/sendSMS",
+        success:function(data){
+          console.log('Succesfuly sent');
+        }
+      });
+    }*/
 
+    function sendSMS(){
+      var xhr = new XMLHttpRequest(); //This is all you would need for IE7+
+      var xhr_results = '';
+      if (xhr != null) {
+          console.log("hello1")
+          xhr.open("GET", "/dashboard/sendSMS", true);
+          xhr.onreadystatechange = function(){
+              if (xhr.readyState === 4) {
+                console.log("hello2")
+                xhr_results = xhr.responseText;
+              }
+          };
+          xhr.send();
+      } 
+    }
 
+    function join(){
+      sendSMS();
+      joinCall();
+    } 
+   
   </script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
       (function(){
         $('#inviteBtn').click(function(){
           console.log('btn clicked');
@@ -69,7 +101,7 @@
           sendSMS();
         });
       })();
-    </script>
+    </script> -->
 
 
 
@@ -176,9 +208,7 @@
           <div class="container center">
             <!--<a href="/dashboard" class="btn">Get Started</a>-->
             <p><input id="displayName" type="text" placeholder="Display Name"></p>
-            <button class="btn" onclick="sendSMS()">Invite by onclick</button>
-            <button class="btn" id="inviteBtn" ">Invite by onclick</button>
-            <button class="btn" onclick="joinCall()">Connect</button>
+            <button class="btn" onclick="join()">Connect</button>
           </div>
         </div>
       </div>
