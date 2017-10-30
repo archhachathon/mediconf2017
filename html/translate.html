@@ -1,0 +1,233 @@
+<!-- https://github.com/muaz-khan/Translator -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MediConf</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        
+        <style>
+            .section-divider {
+                display: inline-block;
+                width: 45%;
+                border: 2px outset black;
+                padding: 5px 10px;
+                vertical-align: top;
+                height: 300px;
+            }
+            
+            .section-divider * {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .section-divider h2 {
+                font-size: 2em;
+                border-bottom: 2px outset black;
+                margin-bottom: 15px;
+                margin-left: -10px;
+                margin-right: -10px;
+                padding: 0 10px;
+                text-align: center;
+            }
+            
+            .section-divider textarea {
+                width: 90%;
+                height: 250px;
+                resize: none;
+                padding: 5px 10px;
+            }
+
+            select {
+                height: auto;
+                vertical-align: middle;
+                font-size: inherit;
+            }
+
+            button, input[type=button] {
+                padding: 0 5px!important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <article>
+        <header style="text-align: center;">    
+        </header>
+
+
+        <section class="experiment">
+
+        <blockquote id="blockquote" style="display: none;border-bottom: 0;margin: 0 13%;text-align: center;border-radius: 6px;border-style: solid;border-color: rgb(214, 210, 210);"></blockquote>
+        
+        <section class="section-divider">
+            <h2>Convert From</h2><br><br>
+
+            <!--Get languages from google -->
+            <select id="convert-from"></select>
+            
+            <br><br>
+            <textarea id="textarea-from"></textarea><br>
+            <button id="btn-convert-text" style="font-size: 16px;">Convert Your Text Input</button><br>
+            <button id="btn-convert-voice" style="font-size: 16px;">Speak & Convert Your Voice</button>
+        </section>
+        
+        <section class="section-divider">
+            <h2>Convert Into</h2><br><br>
+
+            <!--Get languages from google -->
+            <select id="convert-into"></select>
+            
+            <br><br>
+            <textarea id="textarea-to" disabled style="background: #f9f9f9!important;border: 1px solid #f7f1f1;cursor: not-allowed;" title="Output! ReadOnly!"></textarea>
+
+            <br>
+        </article>
+
+           
+    </body>
+
+
+    <script type="text/javascript" src="Translator.js"></script>
+    
+    <script>
+        var translator = new Translator();
+
+        function getOption(language) {
+            var option = document.createElement('option');
+            option.value = language.language;
+            if(language.name) {
+                option.innerHTML = language.name + ' (' + language.language + ')'
+            }
+            else {
+                option.innerHTML = language.language;
+            }
+
+            if(language.language == 'en') {
+                option.selected = true;
+            }
+
+            return option;
+        }
+
+        var convertFrom = document.getElementById('convert-from');
+        var convertInto = document.getElementById('convert-into');
+
+        translator.getListOfLanguages(function(languages) {
+            if(!(languages instanceof Array)) return;
+
+            convertFrom.innerHTML = '';
+            convertInto.innerHTML = '';
+
+
+            //langages from callback
+            languages.forEach(function(language) {
+                var option = getOption(language);
+                convertFrom.appendChild(option);
+
+                var option2 = getOption(language);
+                convertInto.appendChild(option2);
+            });
+
+            sessionStorageGetItem();
+
+            var blockquote = document.getElementById('blockquote');
+            blockquote.style.display = 'block';
+            blockquote.innerHTML = 'You can translate your voice & texts among <strong class="highlight">' + languages.length + '</strong> languages.';
+        });
+        
+        var textareaFrom = document.getElementById('textarea-from');
+        var textareaTo = document.getElementById('textarea-to');
+        
+        function getLanguages() {
+            var from = document.getElementById('convert-from').value.split(' (')[0];
+            var to = document.getElementById('convert-into').value.split(' (')[0];
+            
+            return {
+                from: from,
+                to: to
+            };
+        }
+        
+        document.getElementById('btn-convert-voice').onclick = function() {
+            this.disabled = true;
+            this.innerHTML = 'Start Speaking!';
+
+            var languages = getLanguages();
+            
+            translator.voiceToText(function(text) {
+                textareaFrom.value += text;
+                
+                //Go for the translation
+                document.getElementById('btn-convert-text').onclick(true);
+            }, languages.from);
+        };
+        
+        document.getElementById('btn-convert-text').onclick = function(speakAsWell) {
+            var languages = getLanguages();
+            
+        
+            //get the value from the speech recognized
+            translator.translateLanguage(textareaFrom.value, {
+                from: languages.from,
+                to: languages.to,
+                callback: function(translatedText) {
+                    textareaTo.value += translatedText;
+                    sessionStorage.setItem('textarea-to', textareaTo.value);
+                
+                    if(speakAsWell !== true) return;
+                    translator.speakTextUsingGoogleSpeaker({
+                        textToSpeak: translatedText,
+                        targetLanguage: languages.to,
+
+                        // please use your own API key; if possible
+                        api_key: 'AIzaSyBgXKqLkQViSS9Uq_KWE2xZJs7qzJlOz6A'
+                    });
+                    
+                }
+            });
+        };
+        
+        document.getElementById('convert-from').onchange = function() {
+            sessionStorage.setItem('convert-from', this.value);
+        };
+        
+        document.getElementById('convert-into').onchange = function() {
+            sessionStorage.setItem('convert-into', this.value);
+        };
+        
+        textareaFrom.onchange = function() {
+            sessionStorage.setItem('textarea-from', this.value);
+        };
+        
+        textareaTo.onchange = function() {
+            sessionStorage.setItem('textarea-to', this.value);
+        };
+        
+
+        function sessionStorageGetItem() {
+            if(sessionStorage.getItem('convert-from')) {
+                document.getElementById('convert-from').value = sessionStorage.getItem('convert-from');
+            }
+            
+            if(sessionStorage.getItem('convert-into')) {
+                document.getElementById('convert-into').value = sessionStorage.getItem('convert-into');
+            }
+
+            if(sessionStorage.getItem('textarea-from')) {
+                textareaFrom.value = sessionStorage.getItem('textarea-from');
+            }
+            
+            if(sessionStorage.getItem('textarea-to')) {
+                textareaTo.value = sessionStorage.getItem('textarea-to');
+            }
+            
+        }
+
+        sessionStorageGetItem();
+    </script>
+
+</html>
