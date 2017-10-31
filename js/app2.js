@@ -21,9 +21,9 @@ app.get('/dashboard', function(req, res) {
 app.get('/dashboard/sendSMS', function(req, res) {
     // res.sendFile(path.join(__dirname + '/../html/dashboard.html'));
     client.messages.create({
-    to: '+13126102079',  // Text this number
+    to: '+13126102070',  // Text this number
     from: '+13142079612', // From a valid Twilio number
-    body: "https://189e1465.ngrok.io message from marat branch"
+    body: "https://8add1e4d.ngrok.io message from MediConf, Powered by Twilio, Vidyo, Google Translate API."
 	})
 // .then((message) => console.log(message.sid));
 	.then(function(message){
